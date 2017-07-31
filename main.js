@@ -105,17 +105,30 @@ createLinkParent.appendChild(createLink);
 for (i = 0; i < formData.length; i++){
   // Grab Parent
   let setParent = document.getElementById("fields");
-  //Create Lable HTML
-  // let createLabel = document.createElement("label");
-  // setParent.appendChild(createLabel);
-  // createLabel.textContent = formData[i].label;
-  // createLabel.setAttribute("for", formData[i].id);
 
   //Create Input Field
-  let createInput = document.createElement("input");
+  let createInput = "";
+  if (formData[i].type === "select"){
+    createInput = document.createElement("select");
+    console.log(createInput);
+  } else if (formData[i].type === "textarea"){
+    createInput = document.createElement("textarea");
+  } else {
+    createInput = document.createElement("input");
+  }
+  //Set Attributes for Tag
   createInput.setAttribute("type", formData[i].type);
   createInput.setAttribute("id", formData[i].id);
   createInput.setAttribute("icon", formData[i].icon);
   createInput.setAttribute("placeholder", formData[i].label);
   setParent.appendChild(createInput);
+  //Check if object has options
+  if (formData[i].options.length !== 0){
+    for (let z = 0; z < formData[i].options.length; z++){
+      let createOptions = document.createElement("option");
+      createOptions.setAttribute("value", formData[i].options[z].value);
+      createOptions.textContent = (formData[i].options[z].label);
+      createInput.appendChild(createOptions);
+    }
+  }
 }
