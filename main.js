@@ -108,12 +108,12 @@ for (i = 0; i < formData.length; i++){
   //Create Lable HTML
   let createLabel = document.createElement("label");
   setParent.appendChild(createLabel);
-  createLabel.setAttribute("for", formData[i].label);
+  createLabel.textContent = formData[i].label;
+  createLabel.setAttribute("for", formData[i].id);
 
   //Create Input Field
   let createInput = document.createElement("input");
   createInput.setAttribute("type", formData[i].type);
-  createInput.setAttribute("name", formData[i].label);
   createInput.setAttribute("id", formData[i].id);
   createInput.setAttribute("icon", formData[i].icon);
   setParent.appendChild(createInput);
