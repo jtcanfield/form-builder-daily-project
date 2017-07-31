@@ -103,14 +103,12 @@ createLink.setAttribute("href", "https://maxcdn.bootstrapcdn.com/font-awesome/4.
 createLink.setAttribute("rel", "stylesheet");
 createLinkParent.appendChild(createLink);
 for (i = 0; i < formData.length; i++){
-  // Grab Parent
+  //Grab Parent
   let setParent = document.getElementById("fields");
-
   //Create Input Field
   let createInput = "";
   if (formData[i].type === "select"){
     createInput = document.createElement("select");
-    console.log(createInput);
   } else if (formData[i].type === "textarea"){
     createInput = document.createElement("textarea");
   } else {
