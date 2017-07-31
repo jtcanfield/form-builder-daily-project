@@ -96,13 +96,18 @@ let formData = [
 
 
 // -------- Your Code Goes Below this Line --------
+let createLinkParent = document.querySelector("head");
+let createLink = document.createElement("link");
+createLink.setAttribute("charset", "utf-8");
+createLink.setAttribute("href", "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
+createLink.setAttribute("rel", "stylesheet");
+createLinkParent.appendChild(createLink);
 for (i = 0; i < formData.length; i++){
   let createParent = document.getElementById("fields");
-  //Each Object
-  console.log(createParent)
-  //Each Type
   let createInput = document.createElement("input");
   createInput.setAttribute("type", formData[i].type);
+  createInput.setAttribute("label", formData[i].label);
+  createInput.setAttribute("id", formData[i].id);
+  createInput.setAttribute("icon", formData[i].icon);
   createParent.appendChild(createInput);
-  console.log(formData[i].type)
 }
