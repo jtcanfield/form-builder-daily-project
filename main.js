@@ -96,5 +96,13 @@ let formData = [
 
 
 // -------- Your Code Goes Below this Line --------
-
-
+for (i = 0; i < formData.length; i++){
+  let createParent = document.getElementById("fields");
+  //Each Object
+  console.log(createParent)
+  //Each Type
+  let createInput = document.createElement("input");
+  createInput.setAttribute("type", formData[i].type);
+  createParent.appendChild(createInput);
+  console.log(formData[i].type)
+}
