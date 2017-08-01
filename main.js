@@ -119,6 +119,9 @@ for (i = 0; i < formData.length; i++){
   createInput.setAttribute("id", formData[i].id);
   createInput.setAttribute("icon", formData[i].icon);
   createInput.setAttribute("placeholder", formData[i].label);
+  if (formData[i].id === "user-first-name" || formData[i].id === "user-last-name" || formData[i].id === "user-email" || formData[i].id === "user-mobile"){
+    createInput.setAttribute("required", "");
+  }
   setParent.appendChild(createInput);
   //Check if object has options
   if (formData[i].options.length !== 0){
@@ -129,4 +132,28 @@ for (i = 0; i < formData.length; i++){
       createInput.appendChild(createOptions);
     }
   }
+}
+let submitButton = document.querySelector("button");
+submitButton.addEventListener("click", checkIfValid);
+function checkIfValid() {
+    var inpObj = document.getElementById("user-email");
+    if (inpObj.checkValidity() === false) {
+      console.log("it is not valid");
+    } else {
+        submitFunction()
+    }
+}
+function submitFunction(){
+  function generateResponse(firstNameF, lastNameF, emailAddressF, mobileNumberF){
+  let responseForm = `
+Thank You for submitting your information, ${firstNameF} ${lastNameF}.
+You will be contacted at ${emailAddressF} with more info on the app!
+You will also recieve a confirmation text to ${mobileNumberF}.
+  `;
+  return responseForm
+  }
+  let submitButtonAlertResponse = generateResponse(document.querySelector("#user-first-name").value, document.querySelector("#user-last-name").value,
+  document.querySelector("#user-email").value, document.querySelector("#user-mobile").value);
+  alert(submitButtonAlertResponse);
+  document.querySelector("form").reset();
 }
